@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Spring Liquibase Changelog Generator">
+  <rect width="128" height="128" rx="18" fill="#12372a"/>
+  <path d="M27 77c18 18 48 18 66 0 15-15 17-38 6-55-1 20-16 34-35 34H48c-9 0-15 6-15 14 0 3 1 5 2 7Z" fill="#6db33f"/>
+  <path d="M39 83c12 7 30 5 42-6" fill="none" stroke="#f5f7f2" stroke-width="8" stroke-linecap="round"/>
+  <path d="M47 31h34M47 44h25M47 57h18" stroke="#f5f7f2" stroke-width="7" stroke-linecap="round"/>
+</svg>

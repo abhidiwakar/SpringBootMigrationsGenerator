@@ -1,0 +1,8 @@
+src/**
+out-test/**
+**/*.map
+out/test/**
+tsconfig.json
+tsconfig.test.json
+package-lock.json
+*.test.*

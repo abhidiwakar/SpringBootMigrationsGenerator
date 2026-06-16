@@ -1,0 +1,6 @@
+node_modules/
+extension/node_modules/
+extension/out/
+extension/out-test/
+*.log
+.DS_Store

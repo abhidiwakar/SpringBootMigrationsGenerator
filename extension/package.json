@@ -1,0 +1,171 @@
+{
+  "name": "spring-liquibase-changelog-generator",
+  "displayName": "Spring Liquibase Changelog Generator",
+  "description": "Generate reviewable Liquibase changelogs for Spring Boot projects from JPA/Hibernate metadata and database schema state.",
+  "version": "0.1.10",
+  "publisher": "local",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:springLiquibaseGenerator.validateSetup",
+    "onCommand:springLiquibaseGenerator.configureLiquibase",
+    "onCommand:springLiquibaseGenerator.generateInitialChangelog",
+    "onCommand:springLiquibaseGenerator.generateDiffChangelog",
+    "onCommand:springLiquibaseGenerator.previewChangelog",
+    "onCommand:springLiquibaseGenerator.addChangelogToMaster",
+    "onCommand:springLiquibaseGenerator.generateRollbackPreview",
+    "onCommand:springLiquibaseGenerator.selectJavaRuntime",
+    "onView:springLiquibaseGenerator.sidebar"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "springLiquibaseGenerator.validateSetup",
+        "title": "Spring Liquibase: Validate Setup"
+      },
+      {
+        "command": "springLiquibaseGenerator.configureLiquibase",
+        "title": "Spring Liquibase: Configure Liquibase"
+      },
+      {
+        "command": "springLiquibaseGenerator.generateInitialChangelog",
+        "title": "Spring Liquibase: Generate Initial Changelog"
+      },
+      {
+        "command": "springLiquibaseGenerator.generateDiffChangelog",
+        "title": "Spring Liquibase: Generate Diff Changelog From Entities"
+      },
+      {
+        "command": "springLiquibaseGenerator.previewChangelog",
+        "title": "Spring Liquibase: Preview Changelog"
+      },
+      {
+        "command": "springLiquibaseGenerator.addChangelogToMaster",
+        "title": "Spring Liquibase: Add Changelog To Master File"
+      },
+      {
+        "command": "springLiquibaseGenerator.generateRollbackPreview",
+        "title": "Spring Liquibase: Generate Rollback Preview"
+      },
+      {
+        "command": "springLiquibaseGenerator.selectJavaRuntime",
+        "title": "Spring Liquibase: Select Java Runtime"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "springLiquibaseGenerator",
+          "title": "Spring Liquibase",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "springLiquibaseGenerator": [
+        {
+          "id": "springLiquibaseGenerator.sidebar",
+          "name": "Generator"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Spring Liquibase Changelog Generator",
+      "properties": {
+        "springLiquibaseGenerator.changelogFormat": {
+          "type": "string",
+          "enum": [
+            "yaml",
+            "xml",
+            "json",
+            "sql"
+          ],
+          "default": "yaml"
+        },
+        "springLiquibaseGenerator.changelogRoot": {
+          "type": "string",
+          "default": "src/main/resources/db/changelog"
+        },
+        "springLiquibaseGenerator.masterChangelog": {
+          "type": "string",
+          "default": "src/main/resources/db/changelog/db.changelog-master.yaml"
+        },
+        "springLiquibaseGenerator.defaultAuthor": {
+          "type": "string",
+          "default": ""
+        },
+        "springLiquibaseGenerator.databaseType": {
+          "type": "string",
+          "default": "postgresql"
+        },
+        "springLiquibaseGenerator.defaultSchema": {
+          "type": "string",
+          "default": "public"
+        },
+        "springLiquibaseGenerator.safeMode": {
+          "type": "boolean",
+          "default": true
+        },
+        "springLiquibaseGenerator.javaCommand": {
+          "type": "string",
+          "default": "java"
+        },
+        "springLiquibaseGenerator.mavenCommand": {
+          "type": "string",
+          "default": "mvn"
+        },
+        "springLiquibaseGenerator.gradleCommand": {
+          "type": "string",
+          "default": "./gradlew"
+        },
+        "springLiquibaseGenerator.hibernateDialect": {
+          "type": "string",
+          "default": "org.hibernate.dialect.PostgreSQLDialect"
+        },
+        "springLiquibaseGenerator.hibernatePhysicalNamingStrategy": {
+          "type": "string",
+          "default": ""
+        },
+        "springLiquibaseGenerator.hibernateImplicitNamingStrategy": {
+          "type": "string",
+          "default": ""
+        },
+        "springLiquibaseGenerator.autoDownloadHibernate7Tooling": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically download compatible Liquibase 5 and liquibase-hibernate7 jars for Hibernate 7 entity diff generation when the project classpath does not provide them."
+        },
+        "springLiquibaseGenerator.liquibaseCore5JarPath": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to liquibase-core 5.x jar. Leave empty to use the extension-managed download for Hibernate 7 projects."
+        },
+        "springLiquibaseGenerator.liquibaseHibernate7JarPath": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to liquibase-hibernate7 jar. Leave empty to use the extension-managed GitHub release download for Hibernate 7 projects."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "typecheck": "tsc -p . --noEmit",
+    "test": "tsc -p tsconfig.test.json && node --test out-test/services/*.test.js out-test/liquibase/*.test.js"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.14.15",
+    "@types/vscode": "^1.92.0",
+    "typescript": "^5.5.4"
+  }
+}
